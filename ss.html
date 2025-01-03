@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content=
+"width=device-width, initial-scale=1.0">
+  
+  <title>SPA app</title>
+<!--## Begin Inline CSS-->
+  <style>
+/* style.css */
+
+body {
+  font-family:
+'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #2f8d46;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+
+nav {
+  background-color: #4caf50;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  margin: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  padding: 1em;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #45a049;
+}
+
+main {
+  flex: 1;
+  padding: 1em;
+}
+
+#content {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow:
+0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#content h2 {
+  color: #2f8d46;
+}
+
+#content img {
+  width: 400px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 
+2px 2px 5px rgba(0, 0, 0, 0.2);
+  border: 3px solid #2F8D46;
+}
+
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 
+0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 
+background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
+
+  </style>
+<!--## End Inline CSS-->
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <h1>
+        筆劃動畫 - 點按上方文字產生動畫
+      </h1>      
+    </header>
+    <nav id="topbar">
+      <ul>
+        <li>
+            <a href="#" onclick="addText(line1)">第1組</a>
+        </li>
+        <li>
+            <a href="#" onclick="addText(line2)">第2組</a>
+        </li>
+        <li>
+            <a href="#" onclick="addText(line3)">第3組</a>
+        </li>
+        <li>
+            <a href="#" onclick="addText(line4)">第4組</a>
+        </li>
+        <li>
+            <a href="#" onclick="addText(line5)">第5組</a>
+        </li>
+      </ul>
+    </nav>
+    <nav id="navbar">
+    </nav>
+    <main>
+      <div id="content">
+
+        <iframe src='https://stroke-order.learningweb.moe.edu.tw/dictFrame.jsp?ID=22823' frameborder=0 width=300 height=520 allow='fullscreen'></iframe>
+      </div>
+    </main>
+  </div>  
+<!--## Begin Inline JavaScript-->
+  <script>
+      var line1='上下刀义杯水火';
+      var line2='行走坐站花草哥弟姊妹爸媽';
+      var line3='豆果瓜菜魚牛馬鳥星雲';
+      var line4='天空大海火車高山扇風雨';
+      var line5='門蛋車船眼手足';
+
+      //上下刀义杯水火
+      //行走坐站花草哥弟姊妹爸媽
+      //豆果瓜菜魚牛馬鳥星雲
+      //天空大海火車高山扇風雨 
+      //門蛋車船眼手足
+      addText(line1);
+      function addText(str) {
+        outHtml = `<ul>`;
+        for (let i = 0; i < str.length; i++) {
+          thisChar = str.charAt(i)
+          outHtml += `
+            <li>
+              <a href="#" onclick=
+              "changeContent('`+thisChar+`')">
+                `+thisChar+`
+              </a>
+            </li>
+          `;
+
+        }
+        outHtml += `</ul>`;
+        var contentDiv = document.getElementById('navbar');
+        contentDiv.innerHTML = outHtml
+      }
+      function changeContent(ipChar) {
+        code=ipChar.charCodeAt(0)
+        var contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
+              <iframe src="https://stroke-order.learningweb.moe.edu.tw/dictFrame.jsp?ID=`+code+`" frameborder=0 width=300 height=520 allow='fullscreen'></iframe>
+            `;
+        
+      }
+
+  </script>
+<!--## End Inline JavaScript-->
+</body>
+
+</html>
